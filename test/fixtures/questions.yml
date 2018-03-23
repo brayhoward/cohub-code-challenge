@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  position: 1
+  label: MyText
+  field_type: MyString
+  options: MyText
+  multiselect: false
+
+two:
+  position: 1
+  label: MyText
+  field_type: MyString
+  options: MyText
+  multiselect: false
