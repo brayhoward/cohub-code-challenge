@@ -10,12 +10,18 @@ You are responsible for implementing a solution that records the name of the per
 
 In addition to the test itself, you are also responsible for implementing a small "admin" type screen that allows an admin or privileged user to view tests/questionnaires that people have taken.
 
-# Reference
+# What you start with
 
-* GraphQL Ruby - http://graphql-ruby.org/
-* Apollo/React GraphQL Client - https://www.apollographql.com/docs/react/
-* React Docs - https://reactjs.org/docs/hello-world.html
-* Rails Docs - http://guides.rubyonrails.org/
+This projects starts with a single data model called Question. A question is made up of the following fields:
+
+| Property    | Data Type | Purpose                                                                                                                |
+| ----------- | --------- | ---------------------------------------------------------------------------------------------------------------------- |
+| id          | Integer   | The primary key                                                                                                        |
+| label       | String    | The actual question being asked                                                                                        |
+| position    | Integer   | The order of the question                                                                                              |
+| field_type  | String    | One of `string`, `boolean` or `list`. It can be used by the ui to determine the controls needed to answer the question |
+| options     | Array     | When `list` is used as the `field_type`, this column is used to display the possible options in the list               |
+| multiselect | Boolean   | Can be used by the UI to allow test takers to select more than one option from the list                                |
 
 # Getting set up
 
@@ -33,21 +39,15 @@ Now run `rails server` to start the rails app in development mode.
 
 You can now browse to `http://localhost:3000` in your browser. It's up to you to implement the questionnaire however you think is best. We just ask that you stick to using React, Apollo, and GraphQL.
 
-# What you start with
-
-This projects starts with a single data model called Question. A question is made up of the following fields:
-
-| Property    | Data Type | Purpose                                                                                                                |
-| ----------- | --------- | ---------------------------------------------------------------------------------------------------------------------- |
-| id          | Integer   | The primary key                                                                                                        |
-| label       | String    | The actual question being asked                                                                                        |
-| position    | Integer   | The order of the question                                                                                              |
-| field_type  | String    | One of `string`, `boolean` or `list`. It can be used by the ui to determine the controls needed to answer the question |
-| options     | Array     | When `list` is used as the `field_type`, this column is used to display the possible options in the list               |
-| multiselect | Boolean   | Can be used by the UI to allow test takers to select more than one option from the list                                |
-
 # GraphQL Help
 
 Graph**i**QL is a very handy tool that you can use to run queries and mutations against your GraphQL API. This project comes with Graph**i**QL installed and it's available at:
 
 http://localhost:3000/graphiql
+
+# Reference
+
+* GraphQL Ruby - http://graphql-ruby.org/
+* Apollo/React GraphQL Client - https://www.apollographql.com/docs/react/
+* React Docs - https://reactjs.org/docs/hello-world.html
+* Rails Docs - http://guides.rubyonrails.org/
