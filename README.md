@@ -39,6 +39,10 @@ Now run `rails server` to start the rails app in development mode.
 
 You can now browse to `http://localhost:3000` in your browser. It's up to you to implement the questionnaire however you think is best. We just ask that you stick to using React, Apollo, and GraphQL.
 
+# Submitting your app
+
+Once you're finished and ready to submit, please deploy your application to Heroku and send us a link to it. Please also include a link to the "admin" page where we can view the questionnaire submissions. (Please include any required credentials).
+
 # GraphQL Help
 
 Graph**i**QL is a very handy tool that you can use to run queries and mutations against your GraphQL API. This project comes with Graph**i**QL installed and it's available at:
