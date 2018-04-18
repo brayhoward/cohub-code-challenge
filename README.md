@@ -19,8 +19,8 @@ This projects starts with a single data model called Question. A question is mad
 | id          | Integer   | The primary key                                                                                                        |
 | label       | String    | The actual question being asked                                                                                        |
 | position    | Integer   | The order of the question                                                                                              |
-| field_type  | String    | One of `string`, `boolean` or `list`. It can be used by the ui to determine the controls needed to answer the question |
-| options     | Array     | When `list` is used as the `field_type`, this column is used to display the possible options in the list               |
+| field_type  | String    | One of `string`, `boolean` or `list`. It can be used by the UI to determine the controls needed to answer the question |
+| options     | Array     | When `list` is used as the `field_type`, this field is used to display the possible options in the list               |
 | multiselect | Boolean   | Can be used by the UI to allow test takers to select more than one option from the list                                |
 
 # Getting set up
