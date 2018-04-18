@@ -12,7 +12,7 @@ In addition to the test itself, you are also responsible for implementing a smal
 
 # What you start with
 
-This projects starts with a single data model called Question. A question is made up of the following fields:
+This project starts with a single data model called Question. A question is made up of the following fields:
 
 | Property    | Data Type | Purpose                                                                                                                |
 | ----------- | --------- | ---------------------------------------------------------------------------------------------------------------------- |
