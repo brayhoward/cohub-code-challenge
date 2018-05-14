@@ -29,7 +29,7 @@ const client = new ApolloClient({
 
 export default client;
 
-const removeTypename = (value: any) => {
+const removeTypename = (value) => {
   if (value === null || value === undefined) {
     return value;
   } else if (Array.isArray(value)) {
