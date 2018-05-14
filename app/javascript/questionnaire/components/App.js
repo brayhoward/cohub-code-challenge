@@ -1,6 +1,7 @@
 import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+import { Container } from "semantic-ui-react";
 
 export default class App extends React.Component {
   render() {
@@ -10,11 +11,18 @@ export default class App extends React.Component {
           {({ loading, data }) => {
             if (loading) return <div>Loading..</div>;
 
+
             const questions = data.questions.map(question => (
               <li key={question.id}>{question.label}</li>
             ));
 
-            return <ul>{questions}</ul>;
+            return (
+              <Container as="main">
+                <div className="flex justify-center align-items-center page-height">
+                  <ul>{questions}</ul>
+                </div>
+              </Container>
+            );
           }}
         </Query>
       </div>
