@@ -2,24 +2,20 @@ import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { Container } from "semantic-ui-react";
+import QForm from "./QuestionnaireForm";
 
 export default class App extends React.Component {
   render() {
     return (
       <div>
         <Query query={LIST_QUESTIONS}>
-          {({ loading, data }) => {
+          {({ loading, data: { questions } }) => {
             if (loading) return <div>Loading..</div>;
-
-
-            const questions = data.questions.map(question => (
-              <li key={question.id}>{question.label}</li>
-            ));
 
             return (
               <Container as="main">
                 <div className="flex justify-center align-items-center page-height">
-                  <ul>{questions}</ul>
+                  <QForm {...{questions}} />
                 </div>
               </Container>
             );
