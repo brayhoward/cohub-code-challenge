@@ -17,13 +17,15 @@ export default ({ questions }) => (
     validate={() => null}
     render={({ handleSubmit, pristine, invalid: formInvalid }) => (
       <form onSubmit={handleSubmit}>
-
          <FinalFormField
           name="visitorName"
           label="Full Name"
-          component={TextInput}
           validate={required}
-        />
+        >
+          {props => (
+            <TextInput {...props} placeholder="Name..." />
+          )}
+        </FinalFormField>
 
         {questions.map(
           question => (
