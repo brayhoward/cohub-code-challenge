@@ -9,7 +9,7 @@ import AppField from "./AppField";
 export default ({ questions }) => {
   console.log('questions', 'LOGGED BELLOW');
   console.log(questions);
-  questions = [questions[0], questions[1]];
+  questions = [questions[0], questions[1], questions[2]];
 
   return (
     <Form

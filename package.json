@@ -9,6 +9,7 @@
     "final-form": "4.6.1",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.8.0",
+    "material-ui": "1.0.0-beta.47",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-apollo": "^2.1.3",

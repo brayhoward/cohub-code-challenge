@@ -1,6 +1,7 @@
 import React from "react";
 import { Field as FinalFormField } from "react-final-form";
-import { Input, Checkbox, Label } from "semantic-ui-react";
+import { Input, Label } from "semantic-ui-react";
+import Checkbox from "./inputs/Checkbox";
 
 const required = value => (value ? undefined : "Required");
 
@@ -60,16 +61,9 @@ const BooleanInput = ({ label, name }) => {
   return (
     <FinalFormField
       name={name}
+      label={label}
+      component={Checkbox}
       type="checkbox"
-    >
-      {({ input }) => (
-        <div className="flex align-items-center">
-          <input type="checkbox" {...input} />
-          <label className="pd-l--sm">
-            {label}
-          </label>
-        </div>
-      )}
-    </FinalFormField>
+    / >
   );
 };
