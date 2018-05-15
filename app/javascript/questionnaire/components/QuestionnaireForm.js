@@ -45,10 +45,11 @@ export default ({ questions }) => {
                         </div>
                       </div>
                     )}
+                    content={error}
                     hoverable={false}
                     open={!valid}
-                    content={error}
-                    position='right center'
+                    position="right center"
+                    style={{ color: "red" }}
                   />
                 </div>
               );

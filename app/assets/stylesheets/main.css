@@ -94,3 +94,4 @@
 .txt-center { text-align: center; }
 .txt-left { text-align: left; }
 .txt-upper { text-transform: uppercase; }
+.txt-error { color: red; }
