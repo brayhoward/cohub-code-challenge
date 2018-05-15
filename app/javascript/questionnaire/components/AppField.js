@@ -4,27 +4,13 @@ import { Input, Checkbox, Label } from "semantic-ui-react";
 
 const required = value => (value ? undefined : "Required");
 
-export default ({ question: { id, label, field_type } }) => {
-  const identifier = `Question:${id}`;
-  const shouldRequire = !(field_type === "boolean");
+export default ({ question: { id, field_type, ...rest } }) => {
+  const name = `Question:${id}`;
 
-  return (
-    <FinalFormField
-      name={identifier}
-      validate={shouldRequire ? required : () => undefined }
-    >
-      {({ input, meta: { touched, error } }) => {
-
-        const showError = !!(touched && error);
-        const inputProps = { label, input, showError, error };
-
-        return inputSelect(field_type, inputProps);
-      }}
-    </FinalFormField>
-  );
+  return selectAndRenderInput(field_type, { name, ...rest });
 };
 
-const inputSelect = (field_type, inputProps) => {
+const selectAndRenderInput = (field_type, inputProps) => {
   switch (field_type) {
     case "string":
       return <TextInput {...inputProps} />;
@@ -36,37 +22,49 @@ const inputSelect = (field_type, inputProps) => {
   }
 };
 
-const TextInput = ({ label, input, showError, error }) => (
-  <React.Fragment>
-    <div className="pd-b pd-t--lg">
-      <label>{label}</label>
-    </div>
+const TextInput = ({ label, name }) => (
+  <FinalFormField
+    name={name}
+    validate={required}
+  >
+    {({ input, meta: { touched, error } }) => {
 
-    <div className="flex">
-      <Input
-        {...input}
-        type="text"
-        placeholder="Answer"
-        error={showError}
-        className="full-width"
-      />
+      const showError = !!(touched && error);
 
-      {showError &&
-        <Label basic color='red' pointing='left'>{error}</Label>
-      }
-    </div>
-  </React.Fragment>
-)
+      return (
+        <React.Fragment>
+          <div className="pd-b pd-t--lg">
+            <label>{label}</label>
+          </div>
 
-const BooleanInput = ({ label, input, input: { value } }) => {
-  console.log('input', 'LOGGED BELLOW');
-  console.log(input);
-  console.log('value', 'LOGGED BELLOW');
-  console.log(value);
+          <div className="flex">
+            <Input
+              {...input}
+              type="text"
+              placeholder="Answer"
+              error={showError}
+              className="full-width"
+            />
+
+            {showError &&
+              <Label basic color='red' pointing='left'>{error}</Label>
+            }
+          </div>
+        </React.Fragment>
+      );
+    }}
+  </FinalFormField>
+);
+
+const BooleanInput = ({ label, name }) => {
   return (
-    <div className="flex">
-      <input type="checkbox" {...input} />
-      <label>{label}</label>
-    </div>
+    <FinalFormField name={name} type="checkbox">
+      {({ input }) => (
+        <div className="flex">
+          <input type="checkbox" {...input} />
+          <label>{label}</label>
+        </div>
+      )}
+    </FinalFormField>
   );
 };
