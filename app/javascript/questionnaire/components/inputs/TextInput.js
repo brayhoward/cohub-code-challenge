@@ -1,7 +1,12 @@
 import React from "react";
 import { Input, Label } from "semantic-ui-react";
 
-export default ({ label, input, meta: { touched, error } }) => {
+export default ({
+  label,
+  placeholder = "Answer...",
+  input,
+  meta: { touched, error }
+}) => {
 
   const showError = !!(touched && error);
 
@@ -15,7 +20,7 @@ export default ({ label, input, meta: { touched, error } }) => {
         <Input
           {...input}
           type="text"
-          placeholder="Answer"
+          placeholder={placeholder}
           error={showError}
           className="full-width"
         />

@@ -1,9 +1,11 @@
 import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import { Form } from "react-final-form";
+import { Form, Field as FinalFormField } from "react-final-form";
 import { Button } from "semantic-ui-react";
+import { required } from "../validaters";
 import DynamicField from "./DynamicField";
+import TextInput from "./inputs/TextInput";
 
 
 export default ({ questions }) => (
@@ -15,6 +17,13 @@ export default ({ questions }) => (
     validate={() => null}
     render={({ handleSubmit, pristine, invalid: formInvalid }) => (
       <form onSubmit={handleSubmit}>
+
+         <FinalFormField
+          name="visitorName"
+          label="Full Name"
+          component={TextInput}
+          validate={required}
+        />
 
         {questions.map(
           question => (

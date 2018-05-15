@@ -1,10 +1,9 @@
 import React from "react";
 import { Field as FinalFormField } from "react-final-form";
+import { required } from "../validaters";
 import Checkbox from "./inputs/Checkbox";
 import TextInput from "./inputs/TextInput";
 import Radio from "./inputs/Radio";
-
-const required = value => (value ? undefined : "Required");
 
 export default ({ question: { id, ...rest } }) => {
   const name = `Question:${id}`;
