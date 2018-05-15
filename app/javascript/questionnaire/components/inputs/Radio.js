@@ -1,21 +1,20 @@
 import React from "react";
-import Checkbox from "material-ui/Checkbox";
+import Radio from "material-ui/Radio";
 
 export default ({
-  input: { checked, name, onChange, ...restInput },
+  input: { checked, value, name, onChange, ...restInput },
   label,
   _meta,
   ...rest
 }) => (
   <React.Fragment>
-    <Checkbox
+    <Radio
       {...rest}
       name={name}
       inputProps={restInput}
       onChange={onChange}
       checked={!!checked}
-      color="default"
-      defaultChecked
+      value={value}
     />
 
     <span className="mg-l">{label}</span>

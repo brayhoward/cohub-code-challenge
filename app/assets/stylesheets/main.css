@@ -14,6 +14,7 @@
 .flex-col { flex-flow: column; }
 .flex-row { flex-flow: row; }
 .flex-wrap { flex-wrap: wrap; }
+.flex-1 { flex: 1; }
 /* horizontal alignments */
 .justify-end { justify-content: flex-end; }
 .justify-center { justify-content: center; }
@@ -43,6 +44,10 @@
 .mg-v {
   margin-top: var(--spacing, 1em);
   margin-bottom: var(--spacing, 1em);
+}
+.mg-v--lg {
+  margin-top: calc( var(--spacing, 1em) * 2 );
+  margin-bottom: calc( var(--spacing, 1em) * 2 );
 }
 .mg-h {
   margin-left: var(--spacing, 1em);

@@ -23,7 +23,7 @@ export default ({ questions }) => {
 
           {questions.map(
             question => (
-              <div key={question.id} className="mg-v">
+              <div key={question.id} className="mg-v--lg">
                 <AppField question={question} />
               </div>
             )
