@@ -6,20 +6,20 @@ import Radio from "./inputs/Radio";
 
 const required = value => (value ? undefined : "Required");
 
-export default ({ question: { id, field_type, ...rest } }) => {
+export default ({ question: { id, ...rest } }) => {
   const name = `Question:${id}`;
 
-  return selectAndRenderInput(field_type, { name, ...rest });
+  return selectAndRenderInput({ name, ...rest });
 };
 
-const selectAndRenderInput = (field_type, inputProps) => {
+const selectAndRenderInput = ({ field_type, multiselect, ...inputProps }) => {
   switch (field_type) {
     case "string":
       return <TextField {...inputProps} />;
     case "boolean":
       return <BooleanField {...inputProps} />;
     case "list":
-      return <OptionsListField {...inputProps} />;
+      return multiselect ? <MultiSelectField {...inputProps} /> : <OptionsListField {...inputProps} />;
 
     default:
       return <p> default </p>;
@@ -44,7 +44,36 @@ const BooleanField = ({ label, name }) => (
   />
 );
 
-const OptionsListField = ({ label, name, options }) => {
+const OptionsListField = ({ label, name, options }) => (
+  <div className="flex justify-between">
+    <label className="flex-1">{label}</label>
+
+    <div
+      style={{
+        overflow: "auto",
+        maxHeight: "10em",
+        width: "10em"
+      }}
+      className="mg-l--lg flex-1"
+    >
+      {options.map((option, i) => (
+        <div key={i}>
+          <FinalFormField
+            name={name}
+            label={option}
+            value={option}
+            component={Radio}
+            type="radio"
+            key={i}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+const MultiSelectField = ({ label, name, options }) => {
+
   return (
     <div className="flex justify-between">
       <label className="flex-1">{label}</label>
@@ -63,8 +92,8 @@ const OptionsListField = ({ label, name, options }) => {
               name={name}
               label={option}
               value={option}
-              component={Radio}
-              type="radio"
+              component={Checkbox}
+              type="checkbox"
               key={i}
             />
           </div>
@@ -72,4 +101,4 @@ const OptionsListField = ({ label, name, options }) => {
       </div>
     </div>
   );
-}
+};
