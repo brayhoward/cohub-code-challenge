@@ -1,7 +1,7 @@
 import React from "react";
 import { Field as FinalFormField } from "react-final-form";
-import { Input, Label } from "semantic-ui-react";
 import Checkbox from "./inputs/Checkbox";
+import TextInput from "./inputs/TextInput";
 
 const required = value => (value ? undefined : "Required");
 
@@ -14,56 +14,29 @@ export default ({ question: { id, field_type, ...rest } }) => {
 const selectAndRenderInput = (field_type, inputProps) => {
   switch (field_type) {
     case "string":
-      return <TextInput {...inputProps} />;
+      return <TextField {...inputProps} />;
     case "boolean":
-      return <BooleanInput {...inputProps} />;
+      return <BooleanField {...inputProps} />;
 
     default:
       return <p> default </p>;
   }
 };
 
-const TextInput = ({ label, name }) => (
+const TextField = ({ label, name }) => (
   <FinalFormField
     name={name}
+    label={label}
+    component={TextInput}
     validate={required}
-  >
-    {({ input, meta: { touched, error } }) => {
-
-      const showError = !!(touched && error);
-
-      return (
-        <React.Fragment>
-          <div className="pd-b">
-            <label>{label}</label>
-          </div>
-
-          <div className="flex">
-            <Input
-              {...input}
-              type="text"
-              placeholder="Answer"
-              error={showError}
-              className="full-width"
-            />
-
-            {showError &&
-              <Label basic color='red' pointing='left'>{error}</Label>
-            }
-          </div>
-        </React.Fragment>
-      );
-    }}
-  </FinalFormField>
+  />
 );
 
-const BooleanInput = ({ label, name }) => {
-  return (
-    <FinalFormField
-      name={name}
-      label={label}
-      component={Checkbox}
-      type="checkbox"
-    / >
-  );
-};
+const BooleanField = ({ label, name }) => (
+  <FinalFormField
+    name={name}
+    label={label}
+    component={Checkbox}
+    type="checkbox"
+  />
+);

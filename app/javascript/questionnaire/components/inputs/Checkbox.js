@@ -13,7 +13,7 @@ export default ({
       inputProps={restInput}
       onChange={onChange}
       checked={!!checked}
-      color="default"  
+      color="default"
       defaultChecked
     />
 
