@@ -33,7 +33,7 @@ const TextInput = ({ label, name }) => (
 
       return (
         <React.Fragment>
-          <div className="pd-b pd-t--lg">
+          <div className="pd-b">
             <label>{label}</label>
           </div>
 
@@ -58,11 +58,16 @@ const TextInput = ({ label, name }) => (
 
 const BooleanInput = ({ label, name }) => {
   return (
-    <FinalFormField name={name} type="checkbox">
+    <FinalFormField
+      name={name}
+      type="checkbox"
+    >
       {({ input }) => (
-        <div className="flex">
+        <div className="flex align-items-center">
           <input type="checkbox" {...input} />
-          <label>{label}</label>
+          <label className="pd-l--sm">
+            {label}
+          </label>
         </div>
       )}
     </FinalFormField>

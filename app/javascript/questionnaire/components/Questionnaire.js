@@ -22,7 +22,11 @@ export default ({ questions }) => {
         <form onSubmit={handleSubmit}>
 
           {questions.map(
-            question => <AppField question={question} key={question.id} />
+            question => (
+              <div key={question.id} className="mg-v">
+                <AppField question={question} />
+              </div>
+            )
           )}
 
           <div className="full-width mg-t">

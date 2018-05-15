@@ -40,6 +40,14 @@
 /* spacing */
 .mg-0 { margin: 0; }
 .mg { margin: var(--spacing, 1em); }
+.mg-v {
+  margin-top: var(--spacing, 1em);
+  margin-bottom: var(--spacing, 1em);
+}
+.mg-h {
+  margin-left: var(--spacing, 1em);
+  margin-right: var(--spacing, 1em);
+}
 .mg-t { margin-top: var(--spacing, 1em); }
 .mg-b { margin-bottom: var(--spacing, 1em); }
 .mg-l { margin-left: var(--spacing, 1em); }
@@ -47,6 +55,14 @@
 
 .pd-0 { padding: 0; }
 .pd { padding: var(--spacing, 1em); }
+.pd-v {
+  padding-top: var(--spacing, 1em);
+  padding-bottom: var(--spacing, 1em);
+}
+.pd-h {
+  padding-left: var(--spacing, 1em);
+  padding-right: var(--spacing, 1em);
+}
 .pd-t { padding-top: var(--spacing, 1em); }
 .pd-b { padding-bottom: var(--spacing, 1em); }
 .pd-l { padding-left: var(--spacing, 1em); }
