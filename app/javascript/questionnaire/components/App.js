@@ -2,7 +2,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { Container } from "semantic-ui-react";
-import QForm from "./QuestionnaireForm";
+import Questionnaire from "./Questionnaire";
 
 export default class App extends React.Component {
   render() {
@@ -15,7 +15,7 @@ export default class App extends React.Component {
             return (
               <Container as="main">
                 <div className="flex justify-center align-items-center page-height">
-                  <QForm {...{questions}} />
+                  <Questionnaire {...{questions}} />
                 </div>
               </Container>
             );

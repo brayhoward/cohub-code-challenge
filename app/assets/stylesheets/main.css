@@ -95,3 +95,7 @@
 .txt-left { text-align: left; }
 .txt-upper { text-transform: uppercase; }
 .txt-error { color: red; }
+
+
+/* Uncomment for x-ray vission */
+/* * { border: 1px solid red !important; } */
