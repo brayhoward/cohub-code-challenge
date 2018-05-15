@@ -45,35 +45,40 @@ const BooleanField = ({ label, name }) => (
 );
 
 const OptionsListField = ({ label, name, options }) => (
-  <div className="flex justify-between">
-    <label className="flex-1">{label}</label>
-
-    <div
-      style={{
-        overflow: "auto",
-        maxHeight: "10em",
-        width: "10em"
-      }}
-      className="mg-l--lg flex-1"
-    >
-      {options.map((option, i) => (
-        <div key={i}>
-          <FinalFormField
-            name={name}
-            label={option}
-            value={option}
-            component={Radio}
-            type="radio"
-            key={i}
-          />
-        </div>
-      ))}
-    </div>
-  </div>
+  <ListFieldsFormater label={label}>
+    {options.map((option, i) => (
+      <div key={i}>
+        <FinalFormField
+          name={name}
+          label={option}
+          value={option}
+          component={Radio}
+          type="radio"
+          key={i}
+        />
+      </div>
+    ))}
+  </ListFieldsFormater>
 );
 
-const MultiSelectField = ({ label, name, options }) => {
+const MultiSelectField = ({ label, name, options }) => (
+  <ListFieldsFormater label={label}>
+    {options.map((option, i) => (
+      <div key={i}>
+        <FinalFormField
+          name={name}
+          label={option}
+          value={option}
+          component={Checkbox}
+          type="checkbox"
+          key={i}
+        />
+      </div>
+      ))}
+  </ListFieldsFormater>
+);
 
+const ListFieldsFormater = ({ label, children }) => {
   return (
     <div className="flex justify-between">
       <label className="flex-1">{label}</label>
@@ -86,18 +91,7 @@ const MultiSelectField = ({ label, name, options }) => {
         }}
         className="mg-l--lg flex-1"
       >
-        {options.map((option, i) => (
-          <div key={i}>
-            <FinalFormField
-              name={name}
-              label={option}
-              value={option}
-              component={Checkbox}
-              type="checkbox"
-              key={i}
-            />
-          </div>
-        ))}
+        {children}
       </div>
     </div>
   );

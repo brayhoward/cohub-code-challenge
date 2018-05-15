@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { Form } from "react-final-form";
 import { Button } from "semantic-ui-react";
-import AppField from "./AppField";
+import DynamicField from "./DynamicField";
 
 
 export default ({ questions }) => (
@@ -19,7 +19,7 @@ export default ({ questions }) => (
         {questions.map(
           question => (
             <div key={question.id} className="mg-v--lg">
-              <AppField question={question} />
+              <DynamicField question={question} />
             </div>
           )
         )}
