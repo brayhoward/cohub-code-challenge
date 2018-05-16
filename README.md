@@ -37,6 +37,8 @@ You should now have a sqlite database in the db folder which will contain severa
 
 Now run `rails server` to start the rails app in development mode.
 
+And run `./bin/webpack-dev-server --host 127.0.0.1` in another terminal window to get the app to auto refresh on js file changes.
+
 You can now browse to `http://localhost:3000` in your browser. It's up to you to implement the questionnaire however you think is best. We just ask that you stick to using React, Apollo, and GraphQL.
 
 # Submitting your app
