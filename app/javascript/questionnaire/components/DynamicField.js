@@ -88,7 +88,7 @@ const ListFieldsFormater = ({ label, children }) => {
           maxHeight: "10em",
           width: "10em"
         }}
-        className="mg-l--lg flex-1"
+        className="mg-l--lg flex-1 inset-bx-shdw-top"
       >
         {children}
       </div>

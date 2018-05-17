@@ -8,8 +8,10 @@ import DynamicField from "./DynamicField";
 import TextInput from "./inputs/TextInput";
 
 
-export default ({ questions }) => (
-  <Form
+export default ({ questions }) => {
+  console.log('questions', 'LOGGED BELLOW');
+  console.log(questions);
+  return (<Form
     onSubmit={formData => {
       console.log('formData', 'LOGGED BELLOW');
       console.log(formData);
@@ -17,7 +19,7 @@ export default ({ questions }) => (
     validate={() => null}
     render={({ handleSubmit, pristine, invalid: formInvalid }) => (
       <form onSubmit={handleSubmit}>
-         <FinalFormField
+        <FinalFormField
           name="visitorName"
           label="Full Name"
           validate={required}
@@ -35,7 +37,7 @@ export default ({ questions }) => (
           )
         )}
 
-        <div className="full-width mg-t">
+        <div className="full-width mg-t--xl">
           <Button
             className="mg-t"
             type="submit"
@@ -48,6 +50,5 @@ export default ({ questions }) => (
         </div>
       </form>
     )}
-  />
-);
-
+  />);
+};
