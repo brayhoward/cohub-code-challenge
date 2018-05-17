@@ -6,7 +6,7 @@ class CreateResponsesAndAnsweres < ActiveRecord::Migration[5.1]
       t.timestamps
     end
 
-    create_table :answeres do |t|
+    create_table :answers do |t|
       t.text :text
       t.text :bool
       t.text :selections

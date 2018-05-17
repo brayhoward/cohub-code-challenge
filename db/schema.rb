@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20180517160904) do
 
-  create_table "answeres", force: :cascade do |t|
+  create_table "answers", force: :cascade do |t|
     t.text "text"
     t.text "bool"
     t.text "selections"
@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20180517160904) do
     t.integer "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_answeres_on_question_id"
-    t.index ["response_id"], name: "index_answeres_on_response_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["response_id"], name: "index_answers_on_response_id"
   end
 
   create_table "questions", force: :cascade do |t|
