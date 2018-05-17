@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180324015952) do
+ActiveRecord::Schema.define(version: 20180517160904) do
+
+  create_table "answeres", force: :cascade do |t|
+    t.text "text"
+    t.text "bool"
+    t.text "selections"
+    t.integer "response_id"
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answeres_on_question_id"
+    t.index ["response_id"], name: "index_answeres_on_response_id"
+  end
 
   create_table "questions", force: :cascade do |t|
     t.integer "position", null: false
@@ -18,6 +30,12 @@ ActiveRecord::Schema.define(version: 20180324015952) do
     t.string "field_type", default: "string", null: false
     t.text "options"
     t.boolean "multiselect", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.text "responder"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
