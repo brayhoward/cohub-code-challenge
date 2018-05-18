@@ -103,7 +103,7 @@ function buildResponse({ responder, ...formAnswers }, questions) {
   const answers = aKeys.map(questionIdentifier => {
     const answer = formAnswers[questionIdentifier];
     const question_id = ~~questionIdentifier.slice(-1);
-    const { field_type } = questions.find(q => q.id == question_id);
+    const { field_type, multiselect } = questions.find(q => q.id == question_id);
 
     const answerInput = { question_id };
 
@@ -115,7 +115,10 @@ function buildResponse({ responder, ...formAnswers }, questions) {
         return { ...answerInput, bool: answer };
 
       case "list":
-        return { ...answerInput, selections: answer };
+        return Object.assign(
+          answerInput,
+          multiselect ? { selections: answer } : { text: answer }
+        );
 
       default:
         throw "field_type match error";

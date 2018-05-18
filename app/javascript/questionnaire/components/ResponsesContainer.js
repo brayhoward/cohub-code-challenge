@@ -8,7 +8,7 @@ export default () => (
       {({ loading, data: { responses } }) => {
         if (loading) return <div>Loading..</div>;
 
-        return responses.map(({ responder }) => <p>{responder}</p>);
+        return responses.map((response) => <p>{JSON.stringify(response)}</p>);
       }}
     </Query>
   </div>
@@ -22,6 +22,11 @@ const LIST_QUESTIONS = gql`
         text
         bool
         selections
+        question {
+          field_type
+          label
+          multiselect
+        }
       }
     }
   }
