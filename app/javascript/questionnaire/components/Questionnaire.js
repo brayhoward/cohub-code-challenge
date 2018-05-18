@@ -3,61 +3,85 @@ import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import { Form, Field as FinalFormField } from "react-final-form";
 import { Button } from "semantic-ui-react";
+import Snackbar from "material-ui/Snackbar";
 import { required } from "../validaters";
 import DynamicField from "./DynamicField";
 import TextInput from "./inputs/TextInput";
 
 
-export default ({ questions }) => {
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <Mutation mutation={CREATE_RESPONSE}>
-      {(createResponse) => (
-        <Form
-          onSubmit={formData => {
-            const response = buildResponse(formData, questions);
+    this.state = {
+      showMsg: false,
+    };
+  }
 
-            createResponse({ variables: { response }});
-          }}
-          validate={() => null}
-          render={({ handleSubmit, pristine, invalid: formInvalid }) => (
-            <form onSubmit={handleSubmit}>
-              <FinalFormField
-                name="responder"
-                label="Full Name"
-                validate={required}
-              >
-                {props => (
-                  <TextInput {...props} placeholder="Name..." />
-                )}
-              </FinalFormField>
+  render() {
+    const { questions } = this.props;
+    const { showMsg }   = this.state;
 
-              {questions.map(
-                question => (
-                  <div key={question.id} className="mg-v--lg">
-                    <DynamicField question={question} />
+    return (
+      <React.Fragment>
+        <Mutation mutation={CREATE_RESPONSE}>
+          {(createResponse) => (
+            <Form
+              onSubmit={(formData, { reset }) => {
+                const response = buildResponse(formData, questions);
+
+                createResponse({ variables: { response } });
+                this.setState({ showMsg: true });
+                reset();
+              }}
+              validate={() => null}
+              render={({ handleSubmit, pristine, invalid: formInvalid }) => (
+                <form onSubmit={handleSubmit}>
+                  <FinalFormField
+                    name="responder"
+                    label="Full Name"
+                    validate={required}
+                  >
+                    {props => (
+                      <TextInput {...props} placeholder="Name..." />
+                    )}
+                  </FinalFormField>
+
+                  {questions.map(
+                    question => (
+                      <div key={question.id} className="mg-v--lg">
+                        <DynamicField question={question} />
+                      </div>
+                    )
+                  )}
+
+                  <div className="full-width mg-t--xl">
+                    <Button
+                      className="mg-t"
+                      type="submit"
+                      disabled={pristine || formInvalid}
+                      secondary
+                      fluid
+                    >
+                      Submit
+                    </Button>
                   </div>
-                )
+                </form>
               )}
-
-              <div className="full-width mg-t--xl">
-                <Button
-                  className="mg-t"
-                  type="submit"
-                  disabled={pristine || formInvalid}
-                  secondary
-                  fluid
-                >
-                  Submit
-                </Button>
-              </div>
-            </form>
+            />
           )}
+        </Mutation>
+
+        <Snackbar
+          open={showMsg}
+          message="Thanks, your answers have been submited!"
+          autoHideDuration={3000}
+          onClose={() => this.setState({ showMsg: false })}
         />
-      )}
-    </Mutation>
-  );
-};
+      </React.Fragment>
+    );
+  }
+}
 
 const CREATE_RESPONSE = gql`
   mutation createResponse($response: ResponseInput) {
