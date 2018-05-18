@@ -1,5 +1,5 @@
 import React from "react";
-import { Query } from "react-apollo";
+import { Mutation } from "react-apollo";
 import gql from "graphql-tag";
 import { Form, Field as FinalFormField } from "react-final-form";
 import { Button } from "semantic-ui-react";
@@ -9,46 +9,60 @@ import TextInput from "./inputs/TextInput";
 
 
 export default ({ questions }) => {
-  console.log('questions', 'LOGGED BELLOW');
-  console.log(questions);
-  return (<Form
-    onSubmit={formData => {
-      console.log('formData', 'LOGGED BELLOW');
-      console.log(formData);
-    }}
-    validate={() => null}
-    render={({ handleSubmit, pristine, invalid: formInvalid }) => (
-      <form onSubmit={handleSubmit}>
-        <FinalFormField
-          name="visitorName"
-          label="Full Name"
-          validate={required}
-        >
-          {props => (
-            <TextInput {...props} placeholder="Name..." />
+
+  return (
+    <Mutation mutation={CREATE_RESPONSE}>
+      {(createResponse, { data }) => (
+        <Form
+          onSubmit={({ responder }) => {
+            // debugger;
+            createResponse({ variables: { response: { responder, answers: [{ text: "test", question_id: 1 }] } }});
+          }}
+          validate={() => null}
+          render={({ handleSubmit, pristine, invalid: formInvalid }) => (
+            <form onSubmit={handleSubmit}>
+              <FinalFormField
+                name="responder"
+                label="Full Name"
+                validate={required}
+              >
+                {props => (
+                  <TextInput {...props} placeholder="Name..." />
+                )}
+              </FinalFormField>
+
+              {questions.map(
+                question => (
+                  <div key={question.id} className="mg-v--lg">
+                    <DynamicField question={question} />
+                  </div>
+                )
+              )}
+
+              <div className="full-width mg-t--xl">
+                <Button
+                  className="mg-t"
+                  type="submit"
+                  disabled={pristine || formInvalid}
+                  secondary
+                  fluid
+                >
+                  Submit
+                </Button>
+              </div>
+            </form>
           )}
-        </FinalFormField>
-
-        {questions.map(
-          question => (
-            <div key={question.id} className="mg-v--lg">
-              <DynamicField question={question} />
-            </div>
-          )
-        )}
-
-        <div className="full-width mg-t--xl">
-          <Button
-            className="mg-t"
-            type="submit"
-            disabled={pristine || formInvalid}
-            secondary
-            fluid
-          >
-            Submit
-          </Button>
-        </div>
-      </form>
-    )}
-  />);
+        />
+      )}
+    </Mutation>
+  );
 };
+
+const CREATE_RESPONSE = gql`
+  mutation createResponse($response: ResponseInput) {
+    createResponse(response: $response) {
+      responder
+    }
+  }
+`;
+
