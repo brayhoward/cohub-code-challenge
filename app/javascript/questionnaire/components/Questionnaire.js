@@ -12,11 +12,12 @@ export default ({ questions }) => {
 
   return (
     <Mutation mutation={CREATE_RESPONSE}>
-      {(createResponse, { data }) => (
+      {(createResponse) => (
         <Form
-          onSubmit={({ responder }) => {
-            // debugger;
-            createResponse({ variables: { response: { responder, answers: [{ text: "test", question_id: 1 }] } }});
+          onSubmit={formData => {
+            const response = buildResponse(formData, questions);
+
+            createResponse({ variables: { response }});
           }}
           validate={() => null}
           render={({ handleSubmit, pristine, invalid: formInvalid }) => (
@@ -62,7 +63,41 @@ const CREATE_RESPONSE = gql`
   mutation createResponse($response: ResponseInput) {
     createResponse(response: $response) {
       responder
+      answers {
+        question_id
+        text
+        bool
+        selections
+      }
     }
   }
 `;
+
+function buildResponse({ responder, ...formAnswers }, questions) {
+  const aKeys = Object.keys(formAnswers);
+
+  const answers = aKeys.map(questionIdentifier => {
+    const answer = formAnswers[questionIdentifier];
+    const question_id = ~~questionIdentifier.slice(-1);
+    const { field_type } = questions.find(q => q.id == question_id);
+
+    const answerInput = { question_id };
+
+    switch (field_type) {
+      case "string":
+        return { ...answerInput, text: answer };
+
+      case "boolean":
+        return { ...answerInput, bool: answer };
+
+      case "list":
+        return { ...answerInput, selections: answer };
+
+      default:
+        throw "field_type match error";
+    }
+  });
+
+  return { responder, answers };
+}
 
