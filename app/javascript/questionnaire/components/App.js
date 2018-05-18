@@ -2,7 +2,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { Container } from "semantic-ui-react";
-import Questionnaire from "./Questionnaire";
+import Questionnaire from "./QuestionsForm";
 
 export default class App extends React.Component {
   render() {
