@@ -1,40 +1,18 @@
 import React from "react";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import {
+  BrowserRouter as Router,
+  Route
+} from "react-router-dom";
 import { Container } from "semantic-ui-react";
-import Questionnaire from "./QuestionsForm";
+import Questions from "./QuestionsContainer";
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <div>
-        <Query query={LIST_QUESTIONS}>
-          {({ loading, data: { questions } }) => {
-            if (loading) return <div>Loading..</div>;
-
-            return (
-              <Container as="main">
-                <div className="flex justify-center align-items-center page-height">
-                  <Questionnaire {...{questions}} />
-                </div>
-              </Container>
-            );
-          }}
-        </Query>
+export default () => (
+  <Router>
+    <Container as="main">
+      <div className="flex justify-center align-items-center page-height">
+        <Route exact path="/" component={Questions} />
+        <Route exact path="/dashboard" component={() => <h1>Admin</h1>} />
       </div>
-    );
-  }
-}
-
-const LIST_QUESTIONS = gql`
-  query ListQuestions {
-    questions: ListQuestions {
-      id
-      label
-      position
-      field_type
-      options
-      multiselect
-    }
-  }
-`;
+    </Container>
+  </Router>
+);
