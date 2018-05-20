@@ -16,7 +16,7 @@ questions = [
   {
     label: 'Select two or three of your second favorite programming languages:',
     field_type: 'list',
-    options: %w[Ruby Javascript C# C++ Java Objective-C Swift Go Python Cobol Fortran],
+    options: %w[Ruby Elixir Javascript C# C++ Java Objective-C Swift Go Python Cobol Fortran],
     multiselect: true
   }
 ]
