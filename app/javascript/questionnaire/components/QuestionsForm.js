@@ -88,7 +88,6 @@ const CREATE_RESPONSE = gql`
     createResponse(response: $response) {
       responder
       answers {
-        question_id
         text
         bool
         selections

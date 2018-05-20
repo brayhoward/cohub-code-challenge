@@ -21,7 +21,7 @@ const selectAndRenderInput = ({ field_type, multiselect, ...inputProps }) => {
       return multiselect ? <MultiSelectField {...inputProps} /> : <OptionsListField {...inputProps} />;
 
     default:
-      return <p> default </p>;
+      throw "field_type mismatch in DynamicField.js";
   }
 };
 

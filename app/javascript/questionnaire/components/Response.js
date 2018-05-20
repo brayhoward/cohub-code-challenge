@@ -1,16 +1,23 @@
 import React from "react";
-import { Card } from "semantic-ui-react";
+import { Card, Segment } from "semantic-ui-react";
+import Answer from "./Answer";
 
 export default ({
-  response: { responder }
+  response: { responder, answers }
 }) => (
   <Card fluid>
     <Card.Content>
-      <Card.Header>
+      <Card.Header className="mg-b">
         {responder}
       </Card.Header>
 
-      Answers Placeholder[]
+      {answers.map(
+        (answer, i) => (
+          <Segment key={i} vertical>
+            <Answer answer={answer} />
+          </Segment>
+        ))
+      }
     </Card.Content>
   </Card>
 );

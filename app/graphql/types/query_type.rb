@@ -12,9 +12,4 @@ Types::QueryType = GraphQL::ObjectType.define do
     description 'Returns a list of responses'
     resolve ->(_, _, _) { Response.order(id: :asc) }
   end
-
-  field :ListAnswers, types[Types::Answer] do
-    description 'Returns a list or answers'
-    resolve ->(_, _, _) { Answer.order(id: :asc) }
-  end
 end
