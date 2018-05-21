@@ -34,7 +34,6 @@ export default class extends React.Component {
                 this.setState({ showMsg: true });
                 reset();
               }}
-              validate={() => null}
               render={({ handleSubmit, pristine, invalid: formInvalid }) => (
                 <form onSubmit={handleSubmit}>
                   <FinalFormField

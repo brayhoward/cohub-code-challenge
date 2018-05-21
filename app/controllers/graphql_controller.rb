@@ -3,16 +3,12 @@ class GraphqlController < ApplicationController
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
-    authenticated = cookies[:auth_key] === "LZxKXtOz9tVffA"
+    authenticated = cookies[:auth_key] === "LZxKXtOz9tVffA===="
 
     context = {
       authenticated: authenticated
     }
-    puts """
 
-    AUTHENTICATED: #{authenticated}
-
-    """
     result = CohubCodeChallengeSchema.execute(
       query,
       variables: variables,

@@ -7,6 +7,7 @@ import {
 import { Container } from "semantic-ui-react";
 import Questions from "./QuestionsContainer";
 import Responses from "./ResponsesContainer";
+import Authenticate from "./Authenticate";
 
 export default () => (
   <Router>
@@ -22,8 +23,9 @@ export default () => (
               ({
                 location: {
                   state: { unauthorized = false } = {}
-                }
-              }) => `login cmpt - unathorized: ${JSON.stringify(unauthorized)}`
+                },
+                history
+              }) => <Authenticate {...{unauthorized, history}} />
             }
           />
         </Switch>
