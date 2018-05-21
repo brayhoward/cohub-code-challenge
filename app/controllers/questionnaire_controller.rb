@@ -3,7 +3,7 @@ class QuestionnaireController < ApplicationController
 
   def authenticate
     if params[:password] === "veryhardpassword"
-      cookies[:auth_key] = @auth_key
+      cookies[:auth_key] = { value: @auth_key, expires: Time.zone.now + 1.minute }
       head :ok
     else
       head :forbidden
