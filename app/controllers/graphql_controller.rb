@@ -3,12 +3,22 @@ class GraphqlController < ApplicationController
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
-    context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
-    }
+    authenticated = cookies[:auth_key] === "LZxKXtOz9tVffA"
 
-    result = CohubCodeChallengeSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    context = {
+      authenticated: authenticated
+    }
+    puts """
+
+    AUTHENTICATED: #{authenticated}
+
+    """
+    result = CohubCodeChallengeSchema.execute(
+      query,
+      variables: variables,
+      context: context,
+      operation_name: operation_name
+    )
     render json: result
   end
 
