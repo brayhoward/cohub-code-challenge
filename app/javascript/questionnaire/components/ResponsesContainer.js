@@ -2,6 +2,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { Redirect } from "react-router";
+import { CircularProgress } from "material-ui/Progress";
 import Responses from "./Responses";
 
 export default () => (
@@ -9,7 +10,7 @@ export default () => (
     <Query query={LIST_QUESTIONS}>
       {({ loading, data: { responses } = {} }) => {
 
-        if (loading) return <div>Loading..</div>;
+        if (loading) return <CircularProgress style={{ color: "black" }} thickness={7} />;
 
         if (responses) return <Responses responses={responses} />;
 
