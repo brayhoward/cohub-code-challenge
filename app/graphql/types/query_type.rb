@@ -10,6 +10,13 @@ Types::QueryType = GraphQL::ObjectType.define do
 
   field :ListResponses, types[Types::Response] do
     description 'Returns a list of responses'
-    resolve ->(_, _, _) { Response.order(id: :asc) }
+
+    resolve ->(_obj, _args, ctx) {
+      if ctx[:authenticated]
+        Response.order(id: :asc)
+      else
+        GraphQL::ExecutionError.new("unauthorized")
+      end
+    }
   end
 end
