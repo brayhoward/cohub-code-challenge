@@ -1,3 +1,7 @@
 class ApplicationController < ActionController::Base
-  # protect_from_forgery with: :exception
+  before_action :set_auth_key
+
+  def set_auth_key
+    @auth_key = "3BMYWLoj2psjcezUeOct"
+  end
 end

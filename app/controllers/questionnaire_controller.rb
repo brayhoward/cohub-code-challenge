@@ -3,9 +3,8 @@ class QuestionnaireController < ApplicationController
 
   def authenticate
     if params[:password] === "veryhardpassword"
-      cookies[:auth_key] = "LZxKXtOz9tVffA===="
+      cookies[:auth_key] = @auth_key
       head :ok
-
     else
       head :forbidden
     end

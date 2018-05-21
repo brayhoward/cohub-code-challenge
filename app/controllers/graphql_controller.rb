@@ -3,7 +3,7 @@ class GraphqlController < ApplicationController
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
-    authenticated = cookies[:auth_key] === "LZxKXtOz9tVffA===="
+    authenticated = cookies[:auth_key] === @auth_key
 
     context = {
       authenticated: authenticated
