@@ -16,7 +16,10 @@ export default ({
         <label>{label}</label>
       </div>
 
-      <div className="flex">
+      <div
+        className="flex"
+        style={{ position: "relative" }}
+      >
         <Input
           {...input}
           type="text"
@@ -26,7 +29,19 @@ export default ({
         />
 
         {showError &&
-          <Label basic color='red' pointing='left'>{error}</Label>
+          <Label
+            basic
+            color='red'
+            pointing='left'
+            style={{
+              position: "absolute",
+              zIndex: 22,
+              right: "-77px",
+              bottom: "5px"
+            }}
+          >
+            {error}
+          </Label>
         }
       </div>
     </React.Fragment>
