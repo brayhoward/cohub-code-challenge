@@ -2,6 +2,13 @@
 
 The purpose of this challenge is to evaluate your skills as a developer.
 
+**Demo version of completed project**
+> https://graphql-questionnaire.herokuapp.com
+
+1. Go to `/dashboard` to see the answered questions.
+
+2. You can log in with `veryhardpassword` when It prompts you.
+
 # What you are making
 
 You will be building a questionnaire/test-taking application that reads questions from a GraphQL API and asks the user to answer them.
